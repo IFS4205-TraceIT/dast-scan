@@ -1,0 +1,709 @@
+openapi: 3.0.2
+servers:
+  - url: http://traceit-04-i.comp.nus.edu.sg/tracer/api
+info:
+  title: ''
+  version: ''
+paths:
+  /auth/user:
+    get:
+      operationId: retrieveUser
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    put:
+      operationId: updateUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    patch:
+      operationId: partialUpdateUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+  /api/infections:
+    get:
+      operationId: listListInfecteds
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListInfected'
+          description: ''
+      tags:
+      - api
+  /api/infections/{date}:
+    get:
+      operationId: retrieveListInfected
+      description: ''
+      parameters:
+      - name: date
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInfected'
+          description: ''
+      tags:
+      - api
+  /api/closecontacts/{infectedId}/{infectionId}:
+    get:
+      operationId: retrieveCloseContacts
+      description: ''
+      parameters:
+      - name: infectedId
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: infectionId
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloseContacts'
+          description: ''
+      tags:
+      - api
+  /building/:
+    get:
+      operationId: listBuildings
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Building'
+          description: ''
+      tags:
+      - building
+  /building/genqrcode/{name}:
+    get:
+      operationId: retrieveGenerateQRCode
+      description: ''
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - building
+  /building/buildingaccess:
+    get:
+      operationId: listBuildingAccess
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BuildingAccess'
+          description: ''
+      tags:
+      - building
+  /building/buildingaccess/{userid}:
+    get:
+      operationId: retrieveBuildingAccess
+      description: ''
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingAccess'
+          description: ''
+      tags:
+      - building
+  /building/buildingaccess/{userid}/{date}:
+    get:
+      operationId: retrieveBuildingAccess
+      description: ''
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: date
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingAccess'
+          description: ''
+      tags:
+      - building
+  /building/{buildingid}:
+    get:
+      operationId: retrieveBuildingAccess
+      description: ''
+      parameters:
+      - name: buildingid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingAccess'
+          description: ''
+      tags:
+      - building
+  /building/{buildingid}/{date}:
+    get:
+      operationId: retrieveBuildingAccess
+      description: ''
+      parameters:
+      - name: buildingid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: date
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingAccess'
+          description: ''
+      tags:
+      - building
+  /auth/register:
+    post:
+      operationId: createRegistration
+      description: Return user response after a successful registration.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - auth
+  /auth/login:
+    post:
+      operationId: createLogin
+      description: Return user after login.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - auth
+  /auth/logout:
+    post:
+      operationId: createLogout
+      description: Validate token and save.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - auth
+  /auth/totp:
+    post:
+      operationId: createValidateTOTP
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateTOTP'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ValidateTOTP'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ValidateTOTP'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateTOTP'
+          description: ''
+      tags:
+      - auth
+  /auth/totp/register:
+    post:
+      operationId: createRegisterTOTP
+      description: Validate token and save.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - auth
+  /auth/refresh:
+    post:
+      operationId: createTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+      tags:
+      - auth
+  /api/notify/{infection}/{infectionId}:
+    put:
+      operationId: updateNotifications
+      description: ''
+      parameters:
+      - name: infection
+        in: path
+        required: true
+        description: A unique value identifying this notifications.
+        schema:
+          type: string
+      - name: infectionId
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUpload'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateNotifications
+      description: ''
+      parameters:
+      - name: infection
+        in: path
+        required: true
+        description: A unique value identifying this notifications.
+        schema:
+          type: string
+      - name: infectionId
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateUpload'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUpload'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+          minLength: 8
+        phone_number:
+          type: string
+          maxLength: 15
+        has_otp:
+          type: boolean
+          readOnly: true
+        is_staff:
+          type: boolean
+          readOnly: true
+      required:
+      - username
+      - email
+      - password
+      - phone_number
+    ListInfected:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nric:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        infections:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            notifications:
+              type: object
+              properties:
+                infection:
+                  type: integer
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                uploaded_status:
+                  type: boolean
+                  nullable: true
+                tracer:
+                  type: string
+                  nullable: true
+              required:
+              - infection
+            recorded_timestamp:
+              type: string
+              format: date-time
+          required:
+          - notifications
+          - recorded_timestamp
+      required:
+      - id
+      - nric
+      - name
+      - phone
+    CloseContacts:
+      type: object
+      properties:
+        infected_user:
+          type: string
+        contact_timestamp:
+          type: string
+          format: date-time
+        uid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        phone:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          readOnly: true
+        gender:
+          type: string
+          readOnly: true
+        nric:
+          type: string
+          readOnly: true
+        rssi:
+          type: integer
+          readOnly: true
+      required:
+      - infected_user
+      - contact_timestamp
+    Building:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        location:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+      required:
+      - name
+      - location
+    BuildingAccess:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: object
+          properties:
+            name:
+              type: string
+            nric:
+              type: string
+            gender:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+          required:
+          - name
+          - nric
+          - gender
+          - phone
+        building:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              readOnly: true
+            name:
+              type: string
+            location:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+          required:
+          - name
+          - location
+        access_timestamp:
+          type: string
+          format: date-time
+      required:
+      - user
+      - building
+      - access_timestamp
+    ValidateTOTP:
+      type: object
+      properties:
+        refresh:
+          type: string
+          readOnly: true
+        access:
+          type: string
+          readOnly: true
+        totp:
+          type: string
+          writeOnly: true
+          pattern: ^\d{6}$
+      required:
+      - totp
+    TokenRefresh:
+      type: object
+      properties:
+        refresh:
+          type: string
+        access:
+          type: string
+          readOnly: true
+      required:
+      - refresh
+    UpdateUpload:
+      type: object
+      properties:
+        infection:
+          type: integer
+        due_date:
+          type: string
+          format: date
+          nullable: true
+        start_date:
+          type: string
+          format: date
+          nullable: true
+        uploaded_status:
+          type: boolean
+          nullable: true
+        tracer:
+          type: string
+          nullable: true
+      required:
+      - infection
